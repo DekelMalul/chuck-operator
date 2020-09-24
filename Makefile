@@ -12,8 +12,8 @@ endif
 BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 
 # Image URL to use all building/pushing image targets
-IMG ?= docker.io/dimssss/chuck-operator:latest
-
+IMG ?= docker.io/dekelmalul/chuck-operator:latest
+	
 all: docker-build
 
 # Run against the configured Kubernetes cluster in ~/.kube/config

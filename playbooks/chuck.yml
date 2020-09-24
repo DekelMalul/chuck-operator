@@ -10,7 +10,10 @@
         - ../roles/ui/vars/main.yml
         - ../roles/pg/vars/main.yml
       tags: always
-
+    
+    - name: "print vars"
+      debug:
+        msg: "{{ pg,conf,ui,api }}"
     # Chuck configs
     - import_role:
         name: conf

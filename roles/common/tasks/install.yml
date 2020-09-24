@@ -5,7 +5,7 @@
 
 - name: Debug - {{ template_path }}
   debug:
-    msg: "{{ lookup('template', '{{ template_path }}') }}"
+    msg: "{{ lookup('template', '{{ template_path }}') | from_yaml}}"
   when: debug == "true"
   tags: always
 
@@ -13,7 +13,7 @@
 # Set default value of "no" for K8S wait moduel,when wait_to_complete is not defined
 - name: Set wait flag
   set_fact:
-    wait_to_complete: no
+    wait_to_complete: true
   when: wait_to_complete is not defined
   tags: always
 
@@ -24,8 +24,8 @@
 
 - name: Create - {{ template_path }}
   k8s:
-    state: "{{state}}"
+    state: "{{ state }}"
     definition: "{{ lookup('template', '{{ template_path }}') }}"
-    wait: "{{wait_to_complete|bool}}"
+    wait: "{{ wait_to_complete|bool }}"
   when: dry_run == "false"
   tags: always
